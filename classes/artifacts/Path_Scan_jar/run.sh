@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar Path-Scan.jar $0
+java -jar Path-Scan.jar $1
