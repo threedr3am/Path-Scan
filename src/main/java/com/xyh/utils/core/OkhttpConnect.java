@@ -39,8 +39,10 @@ public class OkhttpConnect {
         //设置连接和读取超时时间
         if (okHttpClientBuild == null) {
             synchronized (OkhttpConnect.class) {
-                if (okHttpClientBuild == null)
+                if (okHttpClientBuild == null) {
                     okHttpClientBuild = new OkHttpClient.Builder();
+                    ConnectionPool connectionPool = new ConnectionPool(50,5,TimeUnit.MINUTES);
+                }
             }
         }
         okHttpClientBuild
