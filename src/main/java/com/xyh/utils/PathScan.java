@@ -103,7 +103,7 @@ public class PathScan {
                         scanResult.setResponseCode(code);
                         scanResults.add(scanResult);
                     }
-                    if (progess.incrementAndGet() % 100 == 0 || progess.get() == paths.size())
+                    if (progess.incrementAndGet() % 1000 == 0 || progess.get() == paths.size())
                         log.info("progess -> " + progess.get() + "/" + paths.size());
 
                 }
