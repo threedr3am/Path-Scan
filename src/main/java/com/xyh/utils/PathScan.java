@@ -40,9 +40,9 @@ public class PathScan {
     private static final int DEFAULT_THREADS = 32;
     private static final String THREADS_CONFIG_KEY = "threads";
 
-    private static final int DEFAULT_CONNECT_TIMEOUT = 500;
+    private static final int DEFAULT_CONNECT_TIMEOUT = 1;
     private static final String CONNECT_TIMEOUT_CONFIG_KEY = "connect-timeout";
-    private static final int DEFAULT_READ_TIMEOUT = 500;
+    private static final int DEFAULT_READ_TIMEOUT = 3000;
     private static final String READ_TIMEOUT_CONFIG_KEY = "read-timeout";
 
     private int bucketSize;
