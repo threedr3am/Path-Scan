@@ -42,6 +42,7 @@ public class OkhttpConnect {
                 if (okHttpClientBuild == null) {
                     okHttpClientBuild = new OkHttpClient.Builder();
                     ConnectionPool connectionPool = new ConnectionPool(50,5,TimeUnit.MINUTES);
+                    okHttpClientBuild.connectionPool(connectionPool);
                 }
             }
         }
