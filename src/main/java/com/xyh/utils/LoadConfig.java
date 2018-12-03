@@ -24,10 +24,12 @@ public class LoadConfig {
 
     public static LoadConfig build() throws FileNotFoundException {
         LoadConfig loadConfig = new LoadConfig();
+        //加载配置文件
         Map<String, String> config = loadConfigFile();
         loadConfig.setConfig(config);
         List<String> pathList = new ArrayList<>();
 
+        //获取jar包所在目录路径
         String currentPath = LoadConfig.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         int endIndex = currentPath.lastIndexOf("/");
         currentPath = currentPath.substring(0, endIndex+1);

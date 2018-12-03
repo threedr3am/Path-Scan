@@ -54,11 +54,14 @@ public class PathScan {
 
     public void init() {
         try {
+            //初始化加载配置
             loadConfig = LoadConfig.build();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         Objects.requireNonNull(loadConfig);
+
+        //加载线程数配置
         String threadsStr = loadConfig.getConfig().get(THREADS_CONFIG_KEY);
         if (threadsStr != null) {
             threads = Integer.parseInt(threadsStr);
@@ -66,10 +69,14 @@ public class PathScan {
                 log.severe("线程数配置出错！");
             executorService = Executors.newFixedThreadPool(threads);
         }
+
+        //加载连接超时时间配置
         String connectTimeoutStr = loadConfig.getConfig().get(DEFAULT_CONNECT_TIMEOUT);
         if (connectTimeoutStr != null) {
             connectTimeout = Integer.parseInt(connectTimeoutStr);
         }
+
+        //加载读取超时时间配置
         String readTimeoutStr = loadConfig.getConfig().get(DEFAULT_READ_TIMEOUT);
         if (readTimeoutStr != null) {
             readTimeout = Integer.parseInt(readTimeoutStr);
@@ -77,10 +84,13 @@ public class PathScan {
     }
 
     public void scan(String host) {
+        //确保host以斜杆/结尾
         if (host.charAt(host.length() - 1) != '/')
             host += '/';
+        //读取path字典
         List<String> paths = loadConfig.getPaths();
         List<ScanResult> scanResults = new ArrayList<>();
+        //计算每个线程分配的path数量
         bucketSize = loadConfig.getPaths().size() / threads;
         CountDownLatch countDownLatch = new CountDownLatch(threads);
         AtomicLong progess = new AtomicLong(0);
@@ -97,12 +107,14 @@ public class PathScan {
                     String url = finalHost + path;
                     int code = httpRequest(url);
                     if (code != 404) {
+                        //非404响应都记录
                         log.info("[ " + code + "] " + url);
                         ScanResult scanResult = new ScanResult();
                         scanResult.setUrl(url);
                         scanResult.setResponseCode(code);
                         scanResults.add(scanResult);
                     }
+                    //进度输出
                     if (progess.incrementAndGet() % 1000 == 0 || progess.get() == paths.size())
                         log.info("progess -> " + progess.get() + "/" + paths.size());
 
@@ -115,10 +127,17 @@ public class PathScan {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //输出扫描结果
         ExportFile.exportFile(host, scanResults);
+        //关闭线程池
         executorService.shutdown();
     }
 
+    /**
+     * http请求
+     * @param url
+     * @return HTTP响应码
+     */
     private int httpRequest(String url) {
         OkHttpRequest okHttpRequest = new OkHttpRequest.Builder()
                 .url(url)
