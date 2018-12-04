@@ -81,17 +81,23 @@ public class LoadConfig {
      */
     private static List<String> readFile(InputStream inputStream) {
         List<String> shells = new ArrayList();
+        BufferedReader bufferedReader = null;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 shells.add(line);
             }
-            bufferedReader.close();
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return shells;
     }
