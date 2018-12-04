@@ -1,8 +1,7 @@
 package com.xyh.utils;
 
-import com.xyh.utils.Common.OkHttpEnums;
+import com.xyh.utils.common.OkHttpEnums;
 import com.xyh.utils.core.OkhttpConnect;
-import com.xyh.utils.model.MultipartFile;
 import com.xyh.utils.model.OkHttpRequest;
 import com.xyh.utils.model.OkHttpResponse;
 import junit.framework.TestCase;
@@ -10,8 +9,6 @@ import okhttp3.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

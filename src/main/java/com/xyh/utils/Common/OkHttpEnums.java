@@ -1,4 +1,4 @@
-package com.xyh.utils.Common;
+package com.xyh.utils.common;
 
 /**
  * Created by xuanyonghao on 2017/10/18.

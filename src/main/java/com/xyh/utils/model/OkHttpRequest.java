@@ -1,6 +1,6 @@
 package com.xyh.utils.model;
 
-import com.xyh.utils.Common.OkHttpEnums;
+import com.xyh.utils.common.OkHttpEnums;
 import okhttp3.MediaType;
 
 import java.io.File;

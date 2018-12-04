@@ -1,6 +1,6 @@
 package com.xyh.utils.core;
 
-import com.xyh.utils.Common.OkHttpEnums;
+import com.xyh.utils.common.OkHttpEnums;
 import com.xyh.utils.model.MultipartFile;
 import com.xyh.utils.model.OkHttpRequest;
 import com.xyh.utils.model.OkHttpResponse;
