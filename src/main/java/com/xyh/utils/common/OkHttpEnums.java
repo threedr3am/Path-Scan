@@ -1,7 +1,7 @@
 package com.xyh.utils.common;
 
 /**
- * Created by xuanyonghao on 2017/10/18.
+ * Created by met3d on 2017/10/18.
  */
 public class OkHttpEnums {
     /**

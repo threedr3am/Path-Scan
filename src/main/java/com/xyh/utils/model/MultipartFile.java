@@ -5,7 +5,7 @@ import okhttp3.MediaType;
 import java.io.File;
 
 /**
- * Created by xuanyonghao on 2017/10/30.
+ * Created by met3d on 2017/10/30.
  */
 public class MultipartFile {
 
